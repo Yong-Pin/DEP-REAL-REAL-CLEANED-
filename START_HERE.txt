@@ -1,0 +1,76 @@
+DEP NESSO SAFETY — FINAL COMPLETE PROJECT
+
+IMPORTANT:
+Upload the CONTENTS of this folder to the ROOT of your GitHub repository.
+Do not upload this whole folder as one nested folder.
+
+Your GitHub root should show files such as:
+- main.py
+- db.py
+- threshold_optimizer.py
+- thresholds.py
+- index.html
+- app.js
+- styles.css
+- requirements.txt
+- render.yaml
+- schema.sql
+- assets/
+- arduino/
+- demo_threshold_data/
+
+RENDER
+Keep these environment variables:
+- DATABASE_URL
+- INGEST_API_KEY
+- ADMIN_PASSWORD
+- TELEGRAM_BOT_TOKEN
+- PUBLIC_DASHBOARD_URL
+
+Build command:
+pip install -r requirements.txt
+
+Start command:
+uvicorn main:app --host 0.0.0.0 --port $PORT
+
+THRESHOLD LAB — HISTORICAL CSV DEMO
+1. Deploy this repository to Render.
+2. Open Dashboard -> Threshold Lab.
+3. Enter the Render ADMIN_PASSWORD.
+4. Click Choose File.
+5. Choose:
+   demo_threshold_data/HHH(1)_MARKED_WITH_LABEL.csv
+6. Click Import labelled CSV.
+7. Then import:
+   demo_threshold_data/DEP Project(1)_MARKED_WITH_LABEL.csv
+8. Click Train Decision Tree Recommendation.
+
+Expected historical sample extraction from the two demo files:
+- 17 FALL
+- 35 NO_FALL
+- 52 historical event/window samples total
+
+Threshold Lab displays:
+- labelled sample counts
+- accuracy
+- balanced accuracy
+- FALL precision
+- FALL recall
+- FALL F1
+- confusion matrix
+- feature importance
+- learned Decision Tree split thresholds
+
+The Decision Tree does NOT automatically overwrite live safety thresholds.
+It is a recommendation/analysis tool.
+
+The website importer accepts either label column name:
+- label
+- Fall_Label
+
+If the browser looks stale after a new deployment:
+Ctrl + Shift + R
+
+OFFLINE NESSO
+The project also includes the edge-processing / LittleFS Arduino versions.
+Do not commit real secrets.h files to GitHub.
